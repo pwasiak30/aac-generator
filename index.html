@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator AAC — materiały komunikacyjne</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">◆ ◆ ◆</span>
+    <h1>Generator AAC</h1>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Rodzaj materiału">
+    <button class="tab-btn active" data-tab="generator" role="tab" aria-selected="true">Generator kart</button>
+    <button class="tab-btn" data-tab="harmonogram" role="tab" aria-selected="false">Harmonogram dnia</button>
+    <button class="tab-btn" data-tab="tablica" role="tab" aria-selected="false">Tablica komunikacyjna</button>
+  </nav>
+</header>
+
+<section class="search-panel no-print">
+  <div class="search-row">
+    <label for="search-input" class="visually-hidden">Szukaj piktogramu</label>
+    <input type="text" id="search-input" placeholder="Szukaj symbolu, np. „mycie rąk”, „obiad”, „smutny”…" autocomplete="off">
+    <button id="search-btn" type="button">Szukaj</button>
+  </div>
+
+  <div id="target-picker" class="target-picker hidden">
+    <label for="target-select">Dodawaj do:</label>
+    <select id="target-select"></select>
+  </div>
+
+  <div id="search-status" class="search-status" aria-live="polite"></div>
+  <div id="search-results" class="results-grid"></div>
+</section>
+
+<main>
+
+  <!-- GENERATOR KART -->
+  <section id="view-generator" class="workspace active-view" aria-label="Generator kart">
+    <div class="workspace-toolbar no-print">
+      <p class="hint">Wyszukaj symbol powyżej i kliknij „Dodaj do planszy”. Podpisy i kolory kategorii możesz zmieniać na każdej karcie.</p>
+      <div class="toolbar-actions">
+        <button class="btn-secondary" data-action="clear-generator">Wyczyść planszę</button>
+        <button class="btn-primary" data-action="print">🖨️ Drukuj / Zapisz PDF</button>
+      </div>
+    </div>
+    <div id="generator-board" class="card-board"></div>
+  </section>
+
+  <!-- HARMONOGRAM DNIA -->
+  <section id="view-harmonogram" class="workspace" aria-label="Harmonogram dnia">
+    <div class="workspace-toolbar no-print">
+      <p class="hint">Wybierz porę dnia w polu „Dodawaj do” powyżej, wyszukaj symbol i dodaj go do slotu. Karty w każdym slocie można przeciągać, żeby zmienić kolejność.</p>
+      <div class="toolbar-actions">
+        <button class="btn-secondary" data-action="add-slot">+ Dodaj porę dnia</button>
+        <button class="btn-secondary" data-action="clear-harmonogram">Wyczyść harmonogram</button>
+        <button class="btn-primary" data-action="print">🖨️ Drukuj / Zapisz PDF</button>
+      </div>
+    </div>
+    <div id="harmonogram-title" class="print-title">Mój plan dnia</div>
+    <div id="harmonogram-list" class="slot-list"></div>
+  </section>
+
+  <!-- TABLICA KOMUNIKACYJNA -->
+  <section id="view-tablica" class="workspace" aria-label="Tablica komunikacyjna">
+    <div class="workspace-toolbar no-print">
+      <p class="hint">Symbole są pogrupowane kolorami wg klucza Fitzgerald (żółty — zaimki, zielony — czasowniki, pomarańczowy — rzeczowniki, niebieski — określenia, fioletowy — pytania, różowy — słowa społeczne, czerwony — przeczenia). Kliknij kartę na tablicy, aby dodać ją do paska zdania na górze.</p>
+      <div class="toolbar-actions">
+        <button class="btn-secondary" data-action="clear-sentence">Wyczyść zdanie</button>
+        <button class="btn-secondary" data-action="clear-tablica">Wyczyść tablicę</button>
+        <button class="btn-primary" data-action="print">🖨️ Drukuj / Zapisz PDF</button>
+      </div>
+    </div>
+
+    <div id="sentence-strip" class="sentence-strip no-print" aria-label="Budowane zdanie">
+      <span class="sentence-empty">Zdanie pojawi się tutaj — kliknij kartę na tablicy poniżej</span>
+    </div>
+
+    <div id="tablica-grid" class="tablica-grid"></div>
+  </section>
+
+</main>
+
+<footer class="app-footer no-print">
+  <p>Symbole: <a href="https://arasaac.org" target="_blank" rel="noopener">ARASAAC</a> © Gobierno de Aragón, licencja CC BY-NC-SA. Dane zapisywane są lokalnie w przeglądarce.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
