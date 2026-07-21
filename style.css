@@ -88,6 +88,13 @@ html, body {
   color: #fff;
 }
 
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .portfolio-link {
   display: inline-flex;
   align-items: center;
