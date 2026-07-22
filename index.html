@@ -7,8 +7,55 @@
 <link rel="stylesheet" href="style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* --- Przycisk wsparcia (Suppi) — zawsze widoczny --- */
+.coffee-fab {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  right: 16px;
+  bottom: 16px;
+  background: #B5794A;
+  color: #FFF7EC;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 16px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.coffee-fab:hover, .coffee-fab:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(0,0,0,0.34);
+}
+.coffee-fab .coffee-icon { font-size: 16px; line-height: 1; }
+@media (max-width: 480px) {
+  .coffee-fab {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+@media (min-width: 900px) {
+  .coffee-fab { right: 24px; bottom: 24px; }
+}
+@media print {
+  .coffee-fab { display: none !important; }
+}
+</style>
 </head>
 <body>
+
+<!-- ============ PRZYCISK WSPARCIA — zawsze widoczny ============ -->
+<a class="coffee-fab" href="https://suppi.pl/pawelwasiak" target="_blank" rel="noopener" title="Postaw mi kawę na Suppi">
+  <span class="coffee-icon">☕</span>
+  <span class="coffee-label">Postaw kawę</span>
+</a>
 
 <header class="app-header">
   <div class="brand">
@@ -92,7 +139,7 @@
 
 <footer class="app-footer no-print">
   <p>Symbole: <a href="https://arasaac.org" target="_blank" rel="noopener">ARASAAC</a> © Gobierno de Aragón, licencja CC BY-NC-SA. Dane zapisywane są lokalnie w przeglądarce.</p>
-  <p>Autor: <a href="https://pwasiak30.github.io/pawel-wasiak-portfolio/" target="_blank" rel="noopener">Portfolio</a> · <a href="https://pwasiak30.github.io/pwasiak-linktree/" target="_blank" rel="noopener">Linktree</a></p>
+  <p>Autor: <a href="https://pwasiak30.github.io/pawel-wasiak-portfolio/" target="_blank" rel="noopener">Portfolio</a> · <a href="https://pwasiak30.github.io/pwasiak-linktree/" target="_blank" rel="noopener">Linktree</a> · <a href="https://suppi.pl/pawelwasiak" target="_blank" rel="noopener">☕ Postaw mi kawę</a></p>
 </footer>
 
 <script src="app.js"></script>
