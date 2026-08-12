@@ -477,3 +477,212 @@ main { padding: 20px 24px 60px; }
     outline: none !important;
   }
 }
+
+/* ============================================================
+   Przycisk wsparcia (Suppi) — zawsze widoczny
+   ============================================================ */
+
+.coffee-fab {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  right: 16px;
+  bottom: 16px;
+  background: #B5794A;
+  color: #FFF7EC;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 16px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.coffee-fab:hover, .coffee-fab:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(0,0,0,0.34);
+}
+.coffee-fab .coffee-icon { font-size: 16px; line-height: 1; }
+@media (max-width: 480px) {
+  .coffee-fab {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+@media (min-width: 900px) {
+  .coffee-fab { right: 24px; bottom: 24px; }
+}
+@media print {
+  .coffee-fab { display: none !important; }
+}
+
+/* ============================================================
+   Pływak z linkami społecznościowymi — taki sam jak na wasiakpawel.pl,
+   widoczny zarówno w wersji na komputery, jak i na smartfony
+   ============================================================ */
+
+.social-fab {
+  position: fixed;
+  z-index: 9999;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Okrągły przycisk otwierający/zamykający pływak — domyślnie zwinięty,
+   żeby nie zasłaniać planszy z kartami; rozwija się po kliknięciu. */
+.social-fab-toggle {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(35,38,43,0.88);
+  color: #D8D6E0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.24);
+  transition: transform 0.18s ease, background 0.18s ease;
+  padding: 0;
+}
+.social-fab-toggle:hover, .social-fab-toggle:focus-visible {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  outline: none;
+}
+.social-fab-toggle .emoji { font-size: 18px; line-height: 1; }
+.social-fab.open .social-fab-toggle { background: var(--accent); color: #fff; }
+
+.social-fab-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(35,38,43,0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 8px 6px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.2s ease, padding 0.25s ease;
+}
+.social-fab.open .social-fab-links {
+  max-height: 420px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.social-fab-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #D8D6E0;
+  flex-shrink: 0;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.social-fab-links a:hover, .social-fab-links a:focus-visible {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  outline: none;
+}
+.social-fab-links svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+.social-fab-links .emoji { font-size: 15px; line-height: 1; }
+@media (max-width: 480px) {
+  .social-fab { left: 10px; bottom: 10px; }
+  .social-fab-toggle { width: 40px; height: 40px; }
+  .social-fab-links { padding: 6px 5px; gap: 4px; }
+  .social-fab-links a { width: 28px; height: 28px; }
+  .social-fab-links svg { width: 14px; height: 14px; }
+  .social-fab-links .emoji { font-size: 13px; }
+}
+@media (min-width: 900px) {
+  .social-fab { left: 24px; bottom: 24px; }
+}
+@media print {
+  .social-fab { display: none !important; }
+}
+
+/* ============================================================
+   Przełącznik języka — PL / EN / UK + 🌐 pozostałe języki (Google Translate),
+   analogicznie do linktree.wasiakpawel.pl
+   ============================================================ */
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  font-family: inherit;
+}
+.lang-switch button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 6px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.lang-switch button:hover { color: var(--ink); }
+.lang-switch button[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+.lang-switch button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.lang-switch .lang-more {
+  font-size: 14px;
+  padding: 6px 9px;
+}
+
+#google_translate_element {
+  position: fixed;
+  top: 66px;
+  right: 16px;
+  z-index: 9998;
+  display: none;
+  background: var(--panel);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  box-shadow: var(--shadow);
+}
+#google_translate_element.open { display: block; }
+.goog-te-gadget { font-family: 'Atkinson Hyperlegible', system-ui, sans-serif !important; font-size: 12px !important; }
+body > .skiptranslate.goog-te-gadget { display: none !important; }
+.goog-te-banner-frame { display: none !important; }
+body { top: 0px !important; }
+
+@media (max-width: 480px) {
+  .lang-switch button { padding: 6px 9px; font-size: 12px; }
+  #google_translate_element { right: 10px; top: 60px; }
+}
