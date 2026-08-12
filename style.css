@@ -532,40 +532,6 @@ main { padding: 20px 24px 60px; }
   left: 16px;
   bottom: 16px;
   display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Okrągły przycisk otwierający/zamykający pływak — domyślnie zwinięty,
-   żeby nie zasłaniać planszy z kartami; rozwija się po kliknięciu. */
-.social-fab-toggle {
-  appearance: none;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(35,38,43,0.88);
-  color: #D8D6E0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.24);
-  transition: transform 0.18s ease, background 0.18s ease;
-  padding: 0;
-}
-.social-fab-toggle:hover, .social-fab-toggle:focus-visible {
-  background: var(--accent);
-  color: #fff;
-  transform: translateY(-2px);
-  outline: none;
-}
-.social-fab-toggle .emoji { font-size: 18px; line-height: 1; }
-.social-fab.open .social-fab-toggle { background: var(--accent); color: #fff; }
-
-.social-fab-links {
-  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
@@ -574,20 +540,8 @@ main { padding: 20px 24px 60px; }
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 999px;
   padding: 8px 6px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(6px);
-  pointer-events: none;
-  transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.2s ease, padding 0.25s ease;
 }
-.social-fab.open .social-fab-links {
-  max-height: 420px;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.social-fab-links a {
+.social-fab a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -598,21 +552,24 @@ main { padding: 20px 24px 60px; }
   flex-shrink: 0;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
-.social-fab-links a:hover, .social-fab-links a:focus-visible {
+.social-fab a:hover, .social-fab a:focus-visible {
   background: var(--accent);
   color: #fff;
   transform: translateY(-2px);
   outline: none;
 }
-.social-fab-links svg { width: 16px; height: 16px; fill: currentColor; display: block; }
-.social-fab-links .emoji { font-size: 15px; line-height: 1; }
+.social-fab svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+.social-fab .emoji { font-size: 15px; line-height: 1; }
 @media (max-width: 480px) {
-  .social-fab { left: 10px; bottom: 10px; }
-  .social-fab-toggle { width: 40px; height: 40px; }
-  .social-fab-links { padding: 6px 5px; gap: 4px; }
-  .social-fab-links a { width: 28px; height: 28px; }
-  .social-fab-links svg { width: 14px; height: 14px; }
-  .social-fab-links .emoji { font-size: 13px; }
+  .social-fab {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 5px;
+    gap: 4px;
+  }
+  .social-fab a { width: 28px; height: 28px; }
+  .social-fab svg { width: 14px; height: 14px; }
+  .social-fab .emoji { font-size: 13px; }
 }
 @media (min-width: 900px) {
   .social-fab { left: 24px; bottom: 24px; }

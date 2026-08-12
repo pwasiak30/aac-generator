@@ -390,28 +390,6 @@ function initLangSwitch() {
   }
 }
 
-/* --- Pływak z linkami: zwiń/rozwiń --- */
-
-function initSocialFab() {
-  const fab = document.getElementById('social-fab');
-  const toggle = document.getElementById('social-fab-toggle');
-  if (!fab || !toggle) return;
-
-  function setOpen(open) {
-    fab.classList.toggle('open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-  }
-
-  toggle.addEventListener('click', () => setOpen(!fab.classList.contains('open')));
-
-  document.addEventListener('click', (e) => {
-    if (fab.classList.contains('open') && !fab.contains(e.target)) setOpen(false);
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && fab.classList.contains('open')) setOpen(false);
-  });
-}
-
 /* ---------------- ARASAAC ---------------- */
 
 const ARASAAC_LOCALE = { pl: 'pl', en: 'en', uk: 'uk' };
@@ -859,6 +837,5 @@ function renderAll() {
 }
 
 initLangSwitch();
-initSocialFab();
 updateTargetPicker();
 renderAll();

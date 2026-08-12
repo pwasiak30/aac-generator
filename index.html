@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="app.title">Generator AAC — materiały komunikacyjne</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
@@ -18,14 +18,7 @@
 </a>
 
 <!-- ============ PŁYWAK Z LINKAMI — jak na wasiakpawel.pl, widoczny na komputerach i smartfonach ============ -->
-<!-- Domyślnie zwinięty (żeby nie zasłaniać planszy z kartami), rozwija się po kliknięciu -->
-<div class="social-fab no-print" id="social-fab">
-  <button type="button" class="social-fab-toggle" id="social-fab-toggle" aria-expanded="false" aria-controls="social-fab-links"
-          data-i18n-title="social.ariaLabel" title="Media społecznościowe"
-          data-i18n-aria-label="social.ariaLabel" aria-label="Media społecznościowe">
-    <span class="emoji">🔗</span>
-  </button>
-  <nav class="social-fab-links" id="social-fab-links" data-i18n-aria-label="social.ariaLabel" aria-label="Media społecznościowe">
+<nav class="social-fab no-print" id="social-fab" data-i18n-aria-label="social.ariaLabel" aria-label="Media społecznościowe">
     <a href="https://x.com/wasiak_dsm" target="_blank" rel="noopener" title="X (Twitter)" aria-label="X (Twitter)">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     </a>
@@ -52,8 +45,7 @@
        data-i18n-aria-label="social.allLinks" aria-label="Wszystkie linki">
       <span class="emoji">🔗</span>
     </a>
-  </nav>
-</div>
+</nav>
 
 <header class="app-header">
   <div class="brand">
@@ -148,6 +140,6 @@
   <p data-i18n-html="footer.author">Autor: <a href="https://pwasiak30.github.io/pawel-wasiak-portfolio/" target="_blank" rel="noopener">Portfolio</a> · <a href="https://pwasiak30.github.io/pwasiak-linktree/" target="_blank" rel="noopener">Linktree</a> · <a href="https://suppi.pl/pawelwasiak" target="_blank" rel="noopener">☕ Postaw mi kawę</a></p>
 </footer>
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
