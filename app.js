@@ -224,16 +224,6 @@ const I18N = {
     en: 'Buy me a coffee on Suppi',
     uk: 'Пригостіть мене кавою на Suppi',
   },
-  'social.ariaLabel': {
-    pl: 'Media społecznościowe',
-    en: 'Social media',
-    uk: 'Соціальні мережі',
-  },
-  'social.allLinks': {
-    pl: 'Wszystkie linki',
-    en: 'All links',
-    uk: 'Усі посилання',
-  },
   'footer.arasaac': {
     pl: 'Symbole: <a href="https://arasaac.org" target="_blank" rel="noopener">ARASAAC</a> © Gobierno de Aragón, licencja CC BY-NC-SA. Dane zapisywane są lokalnie w przeglądarce.',
     en: 'Symbols: <a href="https://arasaac.org" target="_blank" rel="noopener">ARASAAC</a> © Gobierno de Aragón, CC BY-NC-SA license. Data is stored locally in your browser.',

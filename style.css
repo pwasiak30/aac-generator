@@ -1,13 +1,19 @@
+/* Zmienne lokalne aliasowane na tokeny z styleguide.css (musi być załadowany
+   wcześniej w <head>) — zamiast własnej palety korzystamy z marki wasiakpawel.pl.
+   --ink, --ink-soft, --radius, --shadow NIE są tu nadpisywane — dziedziczą
+   wprost z :root w styleguide.css. --radius jest tu zmniejszany celowo
+   (gęsty interfejs narzędzia, nie strona marketingowa). */
 :root {
-  --bg: #FAF9F4;
-  --ink: #23262B;
-  --ink-soft: #5B5F66;
-  --panel: #FFFFFF;
-  --border: #E3E0D4;
-  --accent: #2F6E68;
-  --accent-soft: #E5EFEE;
+  --bg: var(--paper);
+  --panel: var(--card);
+  --border: var(--line);
+  --accent: var(--teal-600);
+  --accent-soft: var(--teal-100);
+  --radius: var(--radius-sm);
 
-  /* Fitzgerald key — standard AAC part-of-speech color coding */
+  /* Fitzgerald key — standardowe kolorowanie AAC wg części mowy.
+     Świadome odstępstwo od palety marki: to ustandaryzowany klucz
+     kolorystyczny stosowany w materiałach AAC, nie dekoracja. */
   --cat-zaimki: #F5C518;      /* pronouns — yellow */
   --cat-czasowniki: #4CAF50;  /* verbs — green */
   --cat-rzeczowniki: #FF8A3D; /* nouns — orange */
@@ -15,9 +21,6 @@
   --cat-pytania: #9B6BC7;     /* questions — purple */
   --cat-spoleczne: #E56399;   /* social — pink */
   --cat-przeczenia: #D64545;  /* negation/misc — red */
-
-  --radius: 10px;
-  --shadow: 0 1px 2px rgba(35,38,43,0.06), 0 4px 14px rgba(35,38,43,0.05);
 }
 
 * { box-sizing: border-box; }
@@ -27,7 +30,7 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  font-family: var(--font-body);
 }
 
 .visually-hidden {
@@ -111,7 +114,7 @@ html, body {
   transition: background 0.15s ease, transform 0.15s ease;
 }
 .portfolio-link:hover {
-  background: #275c57;
+  background: var(--teal-700);
   transform: translateY(-1px);
 }
 
@@ -154,10 +157,10 @@ html, body {
 }
 
 #search-btn, .btn-primary {
-  background: var(--accent);
+  background: var(--coral);
   color: #fff;
 }
-#search-btn:hover, .btn-primary:hover { background: #275c57; }
+#search-btn:hover, .btn-primary:hover { background: var(--coral-dark); }
 
 .btn-secondary {
   background: var(--panel);
@@ -226,11 +229,11 @@ html, body {
   padding: 6px 4px;
   border-radius: 7px;
   border: none;
-  background: var(--accent);
+  background: var(--coral);
   color: #fff;
   cursor: pointer;
 }
-.result-item button:hover { background: #275c57; }
+.result-item button:hover { background: var(--coral-dark); }
 
 /* ---------- Main / workspaces ---------- */
 
@@ -309,7 +312,7 @@ main { padding: 20px 24px 60px; }
 .aac-card .remove-btn {
   border: none;
   background: transparent;
-  color: #B23A3A;
+  color: var(--red-dark);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -365,7 +368,7 @@ main { padding: 20px 24px 60px; }
 .slot-remove {
   border: none;
   background: transparent;
-  color: #B23A3A;
+  color: var(--red-dark);
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -469,13 +472,14 @@ main { padding: 20px 24px 60px; }
     box-shadow: none;
   }
   .slot-row {
-    border: 1.5px solid #999;
+    border: 1.5px solid var(--line);
     break-inside: avoid;
   }
   .caption-input, .slot-name-input {
     border: none !important;
     outline: none !important;
   }
+  .topbar { display: none !important; }
 }
 
 /* ============================================================
@@ -490,20 +494,21 @@ main { padding: 20px 24px 60px; }
   gap: 8px;
   right: 16px;
   bottom: 16px;
-  background: #B5794A;
-  color: #FFF7EC;
+  background: var(--coral);
+  color: #fff;
   text-decoration: none;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   padding: 11px 16px;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 .coffee-fab:hover, .coffee-fab:focus-visible {
+  background: var(--coral-dark);
   transform: translateY(-2px);
-  box-shadow: 0 9px 20px rgba(0,0,0,0.34);
+  box-shadow: var(--shadow);
 }
 .coffee-fab .coffee-icon { font-size: 16px; line-height: 1; }
 @media (max-width: 480px) {
@@ -521,66 +526,20 @@ main { padding: 20px 24px 60px; }
   .coffee-fab { display: none !important; }
 }
 
-/* ============================================================
-   Pływak z linkami społecznościowymi — taki sam jak na wasiakpawel.pl,
-   widoczny zarówno w wersji na komputery, jak i na smartfony
-   ============================================================ */
-
-.social-fab {
-  position: fixed;
-  z-index: 9999;
-  left: 16px;
-  bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  background: rgba(35,38,43,0.88);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 999px;
-  padding: 8px 6px;
-}
-.social-fab a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  color: #D8D6E0;
-  flex-shrink: 0;
-  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-.social-fab a:hover, .social-fab a:focus-visible {
-  background: var(--accent);
-  color: #fff;
-  transform: translateY(-2px);
-  outline: none;
-}
-.social-fab svg { width: 16px; height: 16px; fill: currentColor; display: block; }
-.social-fab .emoji { font-size: 15px; line-height: 1; }
-@media (max-width: 480px) {
-  .social-fab {
-    left: 10px;
-    bottom: 10px;
-    padding: 6px 5px;
-    gap: 4px;
-  }
-  .social-fab a { width: 28px; height: 28px; }
-  .social-fab svg { width: 14px; height: 14px; }
-  .social-fab .emoji { font-size: 13px; }
-}
-@media (min-width: 900px) {
-  .social-fab { left: 24px; bottom: 24px; }
-}
+/* Pływak (.social-fab) i rząd ikon (.social-links) NIE są tu definiowane —
+   pochodzą wprost ze styleguide.css (współdzielony komponent ekosystemu).
+   Markup wklejony jest raz na końcu <body> (FAB) i w stopce (rząd ikon),
+   zgodnie z social-links-component.html. Tu tylko dopinamy zachowanie
+   specyficzne dla tej podstrony: pływak nie powinien się drukować. */
 @media print {
   .social-fab { display: none !important; }
 }
 
 /* ============================================================
-   Przełącznik języka — PL / EN / UK + 🌐 pozostałe języki (Google Translate),
-   analogicznie do linktree.wasiakpawel.pl
+   Przełącznik języka — PL / EN / UK + 🌐 pozostałe języki (Google Translate).
+   To rozszerzenie specyficzne dla tej podstrony (nie jest częścią
+   współdzielonych komponentów ekosystemu) — kolory i kształt pochodzą
+   ze zmiennych styleguide.css.
    ============================================================ */
 
 .lang-switch {
@@ -634,7 +593,7 @@ main { padding: 20px 24px 60px; }
   box-shadow: var(--shadow);
 }
 #google_translate_element.open { display: block; }
-.goog-te-gadget { font-family: 'Atkinson Hyperlegible', system-ui, sans-serif !important; font-size: 12px !important; }
+.goog-te-gadget { font-family: var(--font-body) !important; font-size: 12px !important; }
 body > .skiptranslate.goog-te-gadget { display: none !important; }
 .goog-te-banner-frame { display: none !important; }
 body { top: 0px !important; }
