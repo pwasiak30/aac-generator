@@ -4,14 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="app.title">Generator AAC — materiały komunikacyjne</title>
-<link rel="stylesheet" href="styleguide.css?v=1">
-<link rel="stylesheet" href="style.css?v=4">
+
+<!-- ==========================================================================
+     HEAD-COMPONENT.HTML — wklejony bez zmian, zgodnie z instrukcją projektu
+     ========================================================================== -->
+<meta name="theme-color" content="#3c5878">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" type="image/png" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="stylesheet" href="styleguide.css?v=2">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
 <!-- ==========================================================================
      TOPBAR-COMPONENT.HTML — wklejony bez zmian, zgodnie z instrukcją projektu
      ========================================================================== -->
+
+<!-- Ustawia zapisany wybór motywu (przełącznik jasny/ciemny) jak najwcześniej,
+     ZANIM strona się namaluje, żeby uniknąć mignięcia złym motywem. Jeśli
+     użytkownik nic jeszcze nie wybrał ręcznie, strona nadal podąża za motywem
+     systemowym (prefers-color-scheme) — to obsługuje samo styleguide.css. -->
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('wp-theme');
+      if(t === 'dark' || t === 'light'){ document.documentElement.setAttribute('data-theme', t); }
+    }catch(e){}
+  })();
+</script>
 
 <style>
   .topbar{
@@ -66,10 +88,46 @@
       <ul class="topbar-links">
         <li><a href="https://wasiakpawel.pl">Strona główna</a></li>
         <li><a href="https://linktree.wasiakpawel.pl" class="is-accent">🔗 Linktree</a></li>
+        <li>
+          <!-- Ręczny przełącznik jasny/ciemny. Stylowanie: .theme-toggle w styleguide.css.
+               Ikona pokazuje aktualnie aktywny motyw (☀️ = jasny, 🌙 = ciemny). -->
+          <button
+            type="button"
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Przełącz jasny/ciemny motyw"
+            title="Przełącz jasny/ciemny motyw"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a1 1 0 0 1-1-1V2a1 1 0 1 1 2 0v1.5a1 1 0 0 1-1 1zm0 15a1 1 0 0 1 1 1V22a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1zm7.5-7.5a1 1 0 0 1 1-1H22a1 1 0 1 1 0 2h-1.5a1 1 0 0 1-1-1zm-15 0a1 1 0 0 1 1 1H2a1 1 0 1 1 0-2h1.5a1 1 0 0 1 1 1zm12.02-5.52a1 1 0 0 1 0-1.42l1.06-1.06a1 1 0 1 1 1.42 1.42l-1.06 1.06a1 1 0 0 1-1.42 0zM5.44 18.56a1 1 0 0 1 0-1.42l1.06-1.06a1 1 0 1 1 1.42 1.42l-1.06 1.06a1 1 0 0 1-1.42 0zm13.12 0a1 1 0 0 1-1.42 0l-1.06-1.06a1 1 0 1 1 1.42-1.42l1.06 1.06a1 1 0 0 1 0 1.42zM6.5 6.5a1 1 0 0 1-1.42 0L4.02 5.44a1 1 0 0 1 1.42-1.42L6.5 5.08a1 1 0 0 1 0 1.42zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 14.5A9 9 0 1 1 9.5 2.5a1 1 0 0 1 1.06 1.5A7 7 0 0 0 20 13.44a1 1 0 0 1 1.5 1.06z"/></svg>
+          </button>
+        </li>
       </ul>
     </nav>
   </div>
 </header>
+
+<!-- Wiąże klik przycisku z ustawieniem data-theme na <html> i zapisem wyboru
+     w localStorage (klucz "wp-theme"). Wklejony zaraz po przycisku w DOM,
+     więc nie trzeba czekać na DOMContentLoaded. -->
+<script>
+  (function(){
+    var KEY = 'wp-theme';
+    function current(){
+      var attr = document.documentElement.getAttribute('data-theme');
+      if(attr === 'dark' || attr === 'light') return attr;
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    var btn = document.getElementById('theme-toggle');
+    if(btn){
+      btn.addEventListener('click', function(){
+        var next = current() === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try{ localStorage.setItem(KEY, next); }catch(e){}
+      });
+    }
+  })();
+</script>
 
 <!-- ============ PRZYCISK WSPARCIA — zawsze widoczny (prawy dolny róg, obok pływaka) ============ -->
 <a class="coffee-fab no-print" href="https://suppi.pl/pawelwasiak" target="_blank" rel="noopener"
